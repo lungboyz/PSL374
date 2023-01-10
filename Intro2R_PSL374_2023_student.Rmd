@@ -1,0 +1,1323 @@
+---
+title: "Intro2R"
+author: "Brian Cox"
+date: "11/01/2022"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+
+
+
+R is a statistical computing environment to analyze data and write
+programs. The strength of R comes from:
+
+-   It being developed by statisticians to do statistical analysis
+
+-   Its graphic capacities are top-quality
+
+-   It has excellent resources for creating reproducible documents.
+
+-   Its extensive and active community of users for doing statistical
+    work:
+
+    -   R is the top tag in the [StackExchange CrossValidated
+        site](https://stats.stackexchange.com/tags) for statistical
+        questions
+    -   There are more than 6000 packages on
+        [CRAN](https://cran.r-project.org/web/packages/) that stores all
+        R packages (and installing these packages is straight-forward),
+        from the obscure and cutting-edge statistical techniques to
+        plotting to data wrangling.
+
+    A great resource for R functions is Hadley Wickham's 'Advanced R'
+    book (<http://adv-r.had.co.nz/Functions.html>)
+
+# R Studio
+
+R Studio is a graphical user interface that forms a more user-friendly
+interface with more click-and-go features. R Studio still requires R to
+be installed on your operating system (Mac/Windows/Linux) to run. The in
+R Notebook is highly customizable and helps organize your code by
+integrating the output of the code chunks inline with the commands.
+
+This Integrated Developer Environment is highly customizable through the
+preferences options. Two options I like to personalize are how the
+panels are laid out and the syntax coloring.
+
+One of the most important feature of R Studio is the creation of
+projects. A project ties together your code, output and work space so
+you can return to it as you left it. You can create any number of
+projects, transfer data between project and even open multiple projects
+at the same time.
+
+# R Markdown
+
+To star tin R studio we will use a markdown file. To create one you
+select File/New File/ R Markdown
+
+An `.Rmd` or [R Markdown](http://rmarkdown.rstudio.com/) file is a
+[markdown](https://en.wikipedia.org/wiki/Markdown) file that contains R
+code chunks (or other languages!) that can be processed to output the
+results of the code into a generated `.md` file. This is an incredible
+(and recent) strength of using R, as this then allows you to create
+html, pdf, or Word doc files from the `.md` file using the `rmarkdown`
+package (which relies on [pandoc](https://pandoc.org)).
+
+Markdown syntax for formatting is used in `.Rmd`. Check out the [R
+Markdown documentation](http://rmarkdown.rstudio.com/) for a quick
+tutorial on the syntax.
+
+On the top of each `.Rmd` file is the
+[YAML](https://en.wikipedia.org/wiki/YAML) front matter, which looks
+like:
+
+---
+title: "Introduction to R"
+author: "Frances Wong"
+date: "July 31, 2018"
+output: 
+  html_document: 
+    highlight: tango
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
+
+# the Rmd file
+
+Note the starting and ending `---` 'tags'. This starts the YAML block or
+you can think of it like a section or chapter.
+
+Within the R notebook, there are also code chunks. These are special
+highlighted sections (grey background) that will send the contents to
+the console to run with the output being placed into the notebook. Code
+chunks are denoted by the " \`\`\` " to open and close the sections.
+Press the green arrow on the right of the following code chunk to
+execute the lines of code within.
+
+The language of the code needs to be specified in the opening tags, in
+our case we will put *r*. Additionally, you can add a tittle or
+description. These descriptions will be helpful when troubleshooting
+problems, for example the error will be described in "obligatory
+Salutation" rather than "chunk 36". You can also set the dimensions of
+graphs or figures or control the output or tables and messages. A PDF of
+all possible code is found here"
+
+<https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.226782495.304187226.1609357862-1777125567.1604603699>
+
+R has simple grammar rules that you can follow to read and write code. R
+reads each line of code as a command. While some languages have
+terminator symbols, R does not. The exception is if the comma is in side
+of brackets then R will keep reading the code until the brackets end and
+the return is found.
+
+Functions are ways to perform simple to complex tasks or calculations. A
+function represents several to hundreds of lines of code and make your
+life easier. All functions in R are defined by a word followed by curved
+brackets. Inside the curved brackets is information that the function
+needs to do it job. These are call arguments or parameters. In this
+first example we will use the function print() that will print what you
+want on the screen.
+
+Here is an example of R code
+
+```{r}
+# R is a calculator
+
+
+```
+
+R has storage. You can hold data in memory using objects. There are
+variables but we use the term object as they can be vary complex is the
+data they hold and how they allow access to the data. Object names: \*\*
+MUST start with a letter \*\* cannot have spaces or other
+non-alphanumeric characters \*\* exceptions are the \_ and the .
+
+R can hold three main types of data Numeric (numbers, these include
+positive and negative values, integers (whole numbers) and floats or
+doubles (numbers with a decimal)) Characters (text, can be any
+characater including numbers. Sometimes number represented as characters
+may or maynot be interpreted correctly!) Logical, (TRUE or FALSE (always
+as capitals) or can be 1 and 0 (binary))
+
+There are some other types factors (these are like characters, but are
+indexed. Indexing mean that the computer is aware of all the values.
+these are stored as levels. You can add data but oly if it uses the
+existing levels.)
+
+Dates (R can hold dates based data as dates and can calcuate as days,
+weeks and months or as calender dates)
+
+Here is an example of making objects and putting data in them
+
+```{r}
+#put the number 7 in the object x
+
+
+#put the character 7 in the object y NOTE the quotes
+
+
+#To know what is in an object run just the object
+
+# to return what is in x
+
+
+# to return what is in y
+
+
+```
+
+the \<- is called put this puts data into objects Objects are made as
+you ask for them, they do not need to be formally declared or asigned a
+type before you put data into the object.
+
+in summary x \<- 7 *x* is the name of the object *\<-* is the put
+command *7* is the value to put into x
+
+*TRY THIS* As above we are using the \# to create text in the code that
+is not code. These are called comments and are an excellent method to
+organize and annotate your code. These may seem overly simple for this
+current code example but as your code evolves that are a great way of
+staying organized in large tasks. Additional, you will find that you may
+return to code months later and these comment will help you to quickly
+remember what the code was doing. They are also very important if you
+share code with others, particularly if you publish your code as part of
+a manuscript.
+
+```{r}
+# Create a new object x with the value of 7 stored within 
+
+
+# Recall the object to print out the stored values 
+
+# Create a new object with the value of 12 and print the output
+
+# Use the objects to do some math 
+
+```
+
+# CHARACTER
+
+To put a character type into an object you must use quotes, either
+double " or single ', but do not use the \` back quote as this has a
+special meaning. Create three variables a, b and c that each hold one
+word I, love or coding. Then print these.
+
+```{r}
+#single variables
+
+
+```
+
+Text can be stored in different object but often we would like to
+assemble these into a sentence. The paste() function lets us do this.
+
+```{r}
+#pasted together
+
+
+#pasted with a space separating the words
+
+
+# paste can mix objects that are text and numbers and even characters you write!
+
+
+```
+
+LOGIC
+
+logic is important as it can be data in an object or it can be a test to
+see if something is true
+
+```{r}
+# Create a new object x with the value of 7 stored within 
+x <- 7
+
+# Recall the object to print out the stored values 
+x
+# Create a new object with the value of 12 and print the output
+y <- 12
+y
+
+#test if y is greater than x
+
+
+
+#test is x is greater then y
+
+
+
+# store the result of the logical test in a new object
+
+
+```
+
+\##*A note about exercises* Work as a team. One student shares their
+screen with R studio and the others provide ideas to code the solution.
+This is call paired programming the drivers come up with ideas or name
+of functions to use and the coder makes these a reality. Listen to your
+driver and be patient with the coder. The person writing typically does
+not provide ideas but focuses on the correct syntax of the code and
+setting or attributes. Paired coding teaches two skills used in coding.
+Thinking of the coding solution (the logic and reasoning) and writing
+working code (the organizing, typing and editing). DO NOT work alone.
+Even if you know the answer help the others in your group learn the
+answer. If you coded let someone else take a turn, if you provided ideas
+(driving) take a turn at coding. Don't worry if you cannot complete the
+exercise, even thinking about it and getting stuck helps you to learn.
+If you tried to find a solution the answer will make more sense.
+
+*EXERCISE 1 (10 mins)* 1. Create a code chunk and make variables to
+store the number of hours in a day, number of days in a week, and weeks
+in a year. 2. Create code to calculate the number of hours in a year. 3.
+Create code that uses paste to create a sentence that tells your answer
+
+```{r}
+# Create three object holding the above information 
+
+# Compute the total number of hours with an equation
+
+# create a sentence with your answer
+```
+
+# Complex objects
+
+Holding a single peice of information is helpful, but often we want to
+hold lists or tables of information. R has methods for creating these
+and accessing information from them.
+
+There is a siomple hierarchy of how tables of data are organized. The
+simpliest object holod one element as we saw above. If we connect
+element together we create a vector, this has two or more elements. If
+we stack vectors ontop of eachother we can create rows. Or we can put
+them beside eachother to create columns. NOTE the vectors must be the
+same size!!!!
+
+## Vectors
+
+A vector holds multiple single values in positions call elements. What
+we created above were vectors with only one element. Vectors can contain
+numbers, logical or character, *BUT* all elements have to be the same
+type. All objects in R are inherently vectorized - and that this is a
+huge advantage! Because of this, we can isolate specific elements within
+the object by indexing. To access the indexed value we use square
+brackets.
+
+Lets create a vector by using e <- 11:17, The notation of 11:17 means
+to create a vector of numbers 11 through 17 counting by ones.
+
+```{r}
+#create the object with the values 11 through 17
+
+#show the values in the object
+
+
+#show only the value of the second index position
+
+
+#show the values of index positions 2 through 4
+
+
+#show all the values except the first index
+
+
+
+```
+
+What if we do NOT want the numbers in order? Like the ages of people in
+class or a list of gene names? For this we can use a function. The
+function c() concatenates the individual data points into the vector.
+Functions have the format of a word/character followed by curved
+brackets. They perform a function on what is inside the brackets.
+Functions can do anything, calculations, graph, format a table,
+anything.
+
+```{r Cfunction}
+# the c() function to make a vector 7 digits long
+
+
+
+# nested code to get elements in a specific order
+
+
+# can use an object as well
+
+
+```
+
+Vector has properties that we can calculate, such as length using the
+function length()
+
+```{r}
+
+```
+
+Vectors can have names. Similar to using position we can give a position
+a name and access it by that name. Since our vector e has seven
+positions we can make another vector of seven names.
+
+Make a character vector of favorite genes
+
+```{r}
+myNames <- c("TGFb","TNFa","INS","IGFR2", "OTX2", "CDX2", "NANOG")
+myNames
+```
+
+Now add the names to the vector
+
+```{r}
+
+```
+
+The function names() works two ways. Above we used it to set the names,
+but it can also access and return the names
+
+```{r}
+# and find the names!
+names(e)
+```
+
+We can also access the values for the vector e using the names
+
+```{r}
+#can access using the name in quotes!
+e["TNFa"]
+```
+
+Naming a vector means you do not have to know the position of an
+element, just the name of the element you want. This will be very
+helpful when there are 100's to 1000's of elements like in a gene
+expression data set.
+
+Vectors can be operated on, mathematically not surgically. Any
+mathematical function (+ - \* /) is applied to all elements in the
+vector. Two vectors of the same length will apply a mathematical
+function only to elements of the same positions.
+
+```{r}
+#the original 
+e
+
+#multiplied by 5
+
+#multiplied by itself
+
+
+```
+
+R does something called recycling. If two vectors are not the same
+length R cycles thought he shorter vector and continues until the longer
+vector is complete. let try a and b as objects holding 1:5 and 1:3, then
+multiply these objects.
+
+```{r}
+a<-1:5
+b<-1:3
+
+a*b
+
+
+```
+
+Note the scary red text. This is a warning meaning the code did
+complete, but it did something you might not have expected, so you are
+being warned. If the code cannot run we will get an error. We can see
+that the code performed 1 x 1, 2 x 2, 3 x 3 and then ran out of numbers
+so it started again, with 4 x 1 and 5 x 2.
+
+## Tables
+
+Most of what we will do uses tables of data. A table is a collection of
+vectors. They have rows and columns. And rows and columns can have
+names. There are two main types of tables
+
+Matrix, these can only be one type of data like a vector (numeric,
+character or logical). They can have names of columns and names of rows,
+similar to named index of a vector
+
+Data frames, there are different versions of these but we will just
+focus on the most common type the data frame. These are just like a
+matrix, but each column can be a different data type. So one column can
+be a number and the next column can be a logical and the third a
+character. Although a column can not be mixed.
+
+There are other types largely related to data.frames, tibbles and
+data_tables.
+
+There are many ways to create a matrices and data frames using vectors.
+To make a table from rows of data we can use the function rbind(). To
+make a table from column of data we can use the function cbind(). Both
+function join together vectors. This makes an good example of how data
+is constructed. Tables are assembled from vectors. the vector is the
+basic building block. Lets try these by using the named vector *e* we
+made above. We can also add the names of the rows.
+
+```{r}
+#we can rbind() a table together using the vector object e above
+
+myMatrix <- 
+myMatrix
+```
+
+we can name the rows as be bind them together and we can modify them.
+Note the = symbol. These tell the rbind function what to do. These are
+called arguments.
+
+```{r}
+
+myMatrix<-rbind(s1=e, s2=e*2, s3=e-10)
+myMatrix
+```
+
+We can also bind as columns using the cbind() function
+
+```{r}
+# make it in the opposite direction using the cbind() function
+myMatrix<-cbind(s1=e, s2=e*2, s3=e-10)
+myMatrix
+
+```
+
+The matrix is limited to one data type; it can either numeric, character
+or logical. Let remake the matrix e but this time create a fourth column
+using the myNames vector.
+
+```{r}
+myMatrix2<-cbind(s1=e, s2=e*2, s3=e-10, s4=myNames)
+myMatrix2
+myMatrix
+
+```
+
+What happened to the matrix?
+
+The Data Frame is important as each column can be different data types.
+But within a column all elemnets must be the same data type. NOTE
+data.frame is build as columns of vectors, NOT built as rows! This is
+why each column can be a different data type.
+
+```{r}
+
+#using data frames
+myDataFrame<-data.frame(s1=e, s2=e*2, s3=e-10, s4=myNames)
+myDataFrame
+```
+
+Accessing data from a table
+
+You can find the size of a matrix by using the function dim(), which
+stands for dimension.
+
+```{r}
+# dim is for tables, length is for vectors
+dim(myDataFrame)
+```
+
+What do these two numbers mean? Look at the dimensions of your matrix.
+
+first number is row number second is column number
+
+There are multiple methods to access data form a table. Each returns a
+different type of format. You can access using the [ ] as above, BUT
+there is a comma. The left is the rows and right side is the columns.
+This method returns a data.frame object.
+
+```{r}
+#all rows and columns 2:3
+
+
+#all columns and rows 5:7
+
+
+#columns 2:3 and rows 5:7
+
+```
+
+You can use the names to access the data as well.
+
+```{r}
+#use a row name
+myDataFrame[]
+
+#use a column name
+myDataFrame[]
+
+# use both
+myDataFrame[]
+```
+
+double brackets, this works to get a single column
+
+```{r}
+#all rows and columns 2:3
+myDataFrame[[1]]
+
+myDataFrame[["s2"]]
+
+```
+
+You can access can create new columns using the special character \$.
+This returns a vector of the data.
+
+```{r}
+#To get the first column call s1 use the column name s1.
+
+myDataFrame
+
+```
+
+Create some new columns in myDataFrame
+
+```{r}
+#create a new column on an existing table
+# only the first three rows are numbers
+myDataFrame$howBig<-rowSums(myDataFrame[,1:3])
+
+#cerate a column that tests is howBig is bigger than 40
+
+
+```
+
+You can also name the columns or rows using colnames() and rownames().
+Lets modify the tissue matrix to have some column names with the tissue
+names as the columns.
+
+*TRY THIS*
+
+```{r}
+# print the column names
+colnames(myDataFrame)
+rownames(myDataFrame)
+
+#select the column names you want to modify (s1, s2 and s3) and add the names lung, liver and heart
+
+colnames(myDataFrame)[1:4] <- c("lung", "liver", "heart", "geneNames")
+myDataFrame
+```
+
+# File Path and Directory
+
+Directories, or folders, are locations where data such as your code and
+output are stored. Instructions to access directories are specified
+through file paths.
+
+To find out where your file path is currently set to, ask R to "get
+(the) working directory", this is the function getwd()
+
+```{r}
+getwd()
+```
+
+This will return a location. If location is not specified downstream, it
+search for files and save files to this location. It's good practice to
+group your files according to project.
+
+You can see what files on in your directory
+
+```{r}
+dir()
+```
+
+To specify a location, ask R to "set (the) working directory"
+
+```{r}
+#setwd("/absolute/location")
+#setwd("relative/location")
+```
+
+You can save you tables and R object to your drive
+
+```{r}
+#to save the object
+save(myDataFrame, file="myDataFrame.Rdata")
+
+#to load the object
+load("myDataFrame.Rdata")
+
+# to save a table
+write.csv(myDataFrame, file = "myDataFrame.csv")
+```
+
+Lastly you can load a file. For example this is a table of histological
+measurements from breast cancer samples. Here we use the method
+read.csv(). A csv file is a comma separate value. There can also be a
+table separated values called tsv. The separator can also be called the
+deliminator. We are specifying that these are comma separated values.
+Also it look specifically in the working directory, unless you tell it
+to look somewhere else.
+
+```{r}
+bCancer <- read.csv("breastCancerData.csv")
+bCancer
+```
+
+Graphs and stats
+
+A key part of any data analysis is the creation of graphs and
+statistical comparisons.
+
+Consider this breast cancer data set I have selected this data set of
+breast cancer pathology measurements as it a real published data set.
+The data can be found from the URL
+"<https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data>".
+This is a histological examination of breast cancer biopsies from
+patients to diagnose if they are benign or metastatic tumors.
+
+Some helpful information about the parameters described: a) radius (mean
+of distances from center to points on the perimeter) b) texture
+(standard deviation of gray-scale values) c) perimeter d) area e)
+smoothness (local variation in radius lengths) f) compactness
+(perimeter\^2 / area - 1.0) g) concavity (severity of concave portions
+of the contour) h) concave points (number of concave portions of the
+contour) i) symmetry j) fractal dimension ("coastline approximation" -
+1)
+
+Get to know the data
+
+```{r}
+#How big is the data
+dim(bCancer)
+
+# look at the first few rows
+head(bCancer)
+
+#look at the last few rows
+tail(bCancer)
+
+#summary of the data
+summary(bCancer[,1:13])
+
+
+```
+
+I will change the diagnosis to a factor, as this is a better
+representation of the data, there are two possible outcomes M and B
+(metastatic and benign)
+
+```{r}
+bCancer$diagnosis <- factor(bCancer$diagnosis)
+
+#summary of the data
+summary(bCancer[,1:13])
+
+```
+
+Note that there is no undo in R all changes are permanent. If I make a
+mistake I have to go back and start again. But as the code is saved this
+is a simple as rerunning code.
+
+Another great way to explore data is with graphs. We will use the
+ggplot2 package to make graphs.
+
+## libraries
+
+many if not most functions in R are made and kept in packages. THese are
+collections of code you can use and even change. You need to install the
+packages you want using the install.packages() function
+
+```{r}
+#install.packages("ggplot2")
+#install.packages("corrplot")
+```
+
+But to use a package you use the function library. Packages are
+installed, but once installed they are libraries.
+
+```{r}
+library(ggplot2)
+library(corrplot)
+```
+
+# Lets make a graph
+
+Creating a plot in ggplot, comparing radisu on the x axis and concav on
+the y axis as a scatter plot.
+
+
+Lets examine the code to understand how this works. R is structured like
+a language in that there are rules or a grammar that the computer
+expects.
+
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM_FUNCTION>()
+
+ggplot() is a function, and functions typically have curved brackets.
+
+Functions need to be told what to work on, in this case, the data.
+
+ggplot works by layers, each layer is separated by the '+'
+
+The first line creates a ggplot object of the data. The second layer is
+setting the type of plot to make, a geom_point plot. Most ggplot layers
+begin with the geom\_ then follow with something that describes the type
+of plots, lines, points, bars.
+
+An essential part of the graphing process is the aes() function. This
+sets what the x and y axis will be. They are given the names of the
+columns from the data tables. In the first example x was set to radius
+and y was set to concav (whatever that is!).
+
+```{r}
+
+```
+
+
+**A note about mapping** Mapping can be placed in multiple locations.
+Mapping can be placed in the ggplot function or in the geom_functions.
+If in the geom_functions it will give each graphing layer its own
+aesthetic control. This will be important later.
+
+# Adding details
+
+Often we graph data that is from different types of samples. In our case
+the data has tumors that are either benign (less dangerous) or
+metastatic (very dangerous). By adding a shape or colour we can
+visualize if these sample types are different.
+
+Using aes() can also control the size, shape and colour of the data
+points. This is automated, the shapes, sizes and colours are selected by
+the computer, but you can customize these.
+
+A more detailed graph. add the argument collour to aes and set it to diagnosis
+
+```{r}
+ggplot(data = bCancer, mapping = aes(x = radius, y = concav)) +
+  geom_point()
+```
+
+Wow! Nice, using the aes() function we can set colors for the variables
+and have the figure legend added.
+
+We can also change the labels of the axis and add a title to the figure.
+There are several methods to do this, mostly to confuse people.
+Independently you can use ggtitle(), xlab(), ylab() together you can use
+labs(...) where you can set the title, x, y, subtitle and caption The
+legend title can also be adjusted by using the methods that was applied
+to generate a legend, in this case colour.
+
+```{r}
+ggplot(data = bCancer, mapping = aes(x = radius, y = concav, colour = diagnosis)) +
+  geom_point() +
+	labs(title="Breast Cancer", 
+			 subtitle = "Relationship to diagnosis", 
+			 x = "Tumor radius", 
+			 y = "Tumor concavity", 
+			 colour="Tumour \ndiagnosis", 
+			 caption = "A graphical comparison of tumour properties radius and concavity \nto the diagnsosis of benign (B) and malignant (M).")
+
+
+```
+
+If you would like even more control, Font size, colour etc. you can use
+the function theme(). You can investigate this on your own.
+
+Colour can automatically recognize when you have a continuous or
+categorical data type.
+
+```{r}
+# Make a separate plot of radius and smooth, set the shape to diagnosis and the colour to concav.
+ggplot(data = bCancer, 
+       mapping = aes(x = radius, y = concav, shape = diagnosis, 
+                     color = perimeter)) +
+  geom_point() +
+  scale_color_gradient(low="blue", high="red") +
+  labs(title="Breast Cancer", 
+			 subtitle = "Relationship to diagnosis", 
+			 x = "Tumor radius", 
+			 y = "Tumor concavity", 
+			 shape="Tumour \ndiagnosis", # changed to shape
+			 colour= "Perimeter", # colour is now a gradient
+			 caption = "A graphical comparison of tumour properties radius and concavity \nto the diagnsosis of benign (B) and malignant (M). Colour gradient represents perimeter.")
+```
+
+The above graphs are excellent for comparison of two continuous
+variables.
+
+We can think of graphs as comparisons of
+
+continuous x continuous point plots (scatter plots) continuous x
+categorical box plots and density plots categorical bargraphs
+
+### Bar graphs
+
+Bar graphs are for counting categorical data. How many of each category.
+These should never be used for continuous data or be graphed with error
+bars. A count is absolute. Bar graphs are created using the *geom_bar()*
+function and although a simple type of graph they can provide useful
+looks at a data set
+
+Lets make one for the breast cancer data. Bar graphs are useful for
+categorical data, such as patient classes of sick and healthy. As the
+bar graph only has one variable (the categorical variable) the *aes()*
+function only needs to be given an *x* variable. The *y* variable is
+calculated automatically by counting the number of cases or events that
+match to the *x* variable.
+
+```{r}
+
+	
+```
+
+Lets explore how geom_point(), geom_boxplot(), geom_jitter() and
+geom_violin() graph the diagnosis (x axis) and the radius (y axis).
+Create four graphs and discuss what each of the graph types tells you
+about the data. Is there one that is the best?
+
+Start by creating the ggplot of the bCancer data and setting the x value
+to diagnosis and y to radius. Then make the different graph types.
+
+```{r}
+ggplot(data = bCancer, mapping = aes(x = diagnosis, y = radius)) +
+  geom_point()
+
+```
+
+```{r}
+ggplot(data = bCancer, mapping = aes(x = diagnosis, y = radius)) 
+
+```
+
+```{r}
+ggplot(data = bCancer, mapping = aes(x = diagnosis, y = radius))
+```
+
+```{r}
+ggplot(data = bCancer, mapping = aes(x = diagnosis, y = radius)) 
+```
+
+## Summary statisics
+
+Summary statistics are calculations such as the mean, variance, median
+etc. These form the basis of many statistical tests like the t-test, but
+are also very useful calculations for comparisons.
+
+Now that we understand some basic principals of data objects, we can use
+this to help make calculations and test comparisons.
+
+We'll work with a breast cancer dataset. This data set is large so we
+will load it into the R environment from a file stored on our computer.
+If you know the path to the file then you can type it or copy and paste
+the file path. I hate to do this, so I use the import tool. The import
+tool is in the top right panel under the Environment tab. Its called
+"Import Dataset". It makes code that you can then add to your Rmd file.
+
+### Calculating summary values
+
+Often we want to describe data by summaries, like the mean or median and
+the standard deviation about the mean. There are multiple functions in R
+to handle these calculations, mean() sd() variance(). Recall to access
+specific columns you can use the \$ and the name of the column. Also
+recall that you can use the function colnames() to get a vector of
+column names for a table.
+
+```{r}
+
+# mean()
+
+# median()
+
+# sd() is the standard deviation
+
+# var() is the variance
+
+# Alternative for SD 
+sqrt(var(bCancer$radius)) 
+```
+
+What if we want to make summary calculations of multiple columns? The
+apply() function enables us to do this.
+
+```{r}
+
+apply(X = bCancer[, c(4:8)], MARGIN = 2, FUN = mean)
+```
+
+Here we are selecting the column of bCancer we want to calculate the
+mean. The MARGIN argument tells the function to calculate the mean on
+the rows or columns, where 1 is rows and 2 is columns. Lastly the FUN
+argument is the function we want to use. This can be any function.
+
+The mean and median tell us about the shape of the data, its normalcy.
+The variance tells us about the dispersion or spread of the data and the
+standard deviation tells us about the distance from the mean of the
+data. The standardized part helps by making the answer the same units as
+the original data (variance was a square for square root puts in to
+normal space). It also informs us about how far away from the mean you
+need to go to capture 68% of the data (1 standard deviation), at 2 SD we
+will capture 95% and at 3 SD 99% of the data. SD is often what we
+report, but variance is typically used in calculations before returning
+to normal space for reporting.
+
+However, this is the summary of all the data. We would rather know these
+values as they relate to the different patient sub types of benign and
+metastatic.
+
+There many methods to split data, here is a method that uses the split
+function. This function will split the table return it as a list of
+split tables. If there are two splits (e.g., B and M) there will be a
+list of two tables returned.
+
+```{r}
+# the split function need a data set and a spliting variable 
+mySplit<-split(bCancer, bCancer$diagnosis)
+
+# look at the list returned
+
+
+```
+
+Recall that to get the value of a list element you need to use the [[]],
+IN the case of mySplit there are two positions 1 and 2 and they are
+called B and M. You can use either the numbers of the letters, but if
+you use the letter they need to be in quotes.
+
+```{r}
+mySplit[[1]]
+mySplit$B
+```
+
+```{r}
+ben<-apply(mySplit$B[, c(4:8)], MARGIN = 2, FUN = mean)
+
+mag<-apply(mySplit$M[, c(4:8)], MARGIN = 2, FUN = mean)
+
+#To make it display nice in a data.frame
+
+data.frame(benign = apply(mySplit$B[, c(4:8)], 
+													MARGIN = 2, FUN = mean), 
+					 malignant = apply(mySplit$M[, c(4:8)], 
+                             MARGIN = 2, FUN = mean)
+                 )
+#Note we can use the round() function to limit the number of decimals
+
+round(data.frame(benign = ben, malignant = mag), 2)
+
+```
+
+# Performing a statistical test
+
+## A continuous variable split by a category
+
+So the means might look different, but how do we know they are
+different? Considering the breast cancer data set, how can we determine
+if there is a statistical difference between B and M tumour types for a
+particular measurement? To determine this for the means we can apply a
+t-test.
+
+This function takes two vectors of variables and performs the t-test.
+
+```{r}
+t.test(x= mySplit[["B"]]$radius, y= mySplit[["M"]]$radius)
+```
+
+Well that is a little cumbersome to write. Fortunately the t.test()
+function comes with methods to split the data set using a formula. These
+are written as formula = variable ~ category and then an argument for the data set. Where in our case the category to
+split the data is the diagnosis
+
+```{r}
+t.test()
+```
+
+The *\~* is used to denote a mathematical function. We want to separate
+the values of concav *as a function of* the values of diagnosis.
+
+This is convenient but it would look better in a table, especially if we
+wanted to test 4 or 5 more variables. The important values that we would
+report are the means and the p values. Sometime its is also good to have
+the T-statistic as the sign provides the direction of the test. If we
+now run the same code to generate the t.test() we can save the output as
+a new object. Then we can extract specific values from the data object.
+
+```{r}
+test1<-t.test(formula= radius ~ diagnosis, data = bCancer)
+
+names(test1)
+test1$statistic
+test1$p.value
+test1$data.name
+```
+
+```{r}
+round(
+  data.frame(statistic=test1$statistic, 
+             pValue=test1$p.value, 
+             row.names = test1$data.name),
+  2)
+```
+
+If the data is not normal we can use a U-test or the Wilcox test for
+non-parametric data. The function is wilcox.test() and the data is
+entered the same way as a t.test()
+
+```{r}
+t.test(radius ~ diagnosis, bCancer)
+wilcox.test(radius ~ diagnosis, bCancer)
+```
+
+## Two continuous variables
+
+Two continuous variable may have a relationship. We can test for the
+relationship using a correlation test, cor.test(). This also uses the
+formula method, but the formula is different. The *\~* goes first
+followed by the two variable to test.
+
+```{r}
+cor.test(~ radius + perimeter, data = bCancer)
+
+correlation<-cor.test(~ radius + perimeter, data = bCancer)
+
+names(correlation)
+
+```
+
+## Exercise # 2
+
+Make a graph of the variables smooth and compact and colour by diganosis. 
+
+Make a correlation test of smooth and compact
+
+Make a t-test of smooth as a function of diagnosis. 
+
+
+## A continuous varible with more than two categories
+When we have more than two groups in our data we should apply an Analysis of Variance (ANOVA). For this example we will use a table of experimental data on hamster tooth growth related to vitamin C intake.
+
+```{r}
+#the data set
+data(ToothGrowth)
+
+# A summary of the data
+summary(ToothGrowth)
+
+# modification of the dose column to a category
+ToothGrowth$dose<-factor(ToothGrowth$dose)
+
+# A summary of the data to verify the modification
+summary(ToothGrowth)
+```
+
+This data have a measurement a supplement group given vitamin C (VC) orange juice (OJ) at different dosages 0.5, 1 and 2
+
+We can use an ANOVA to assess the supplementation with vitamin C using the function aov()
+
+```{r}
+teeth<-split(ToothGrowth, ToothGrowth$supp)
+teethVC<-aov(len ~ dose, data = teeth[["VC"]])
+
+summary(teethVC)
+```
+
+Since this is significant we need to apply a Tukey Honest Significant Difference test. This is a post-hoc test. The function is TukeyHSD()
+
+```{r}
+TukeyHSD(teethVC)
+```
+
+Here we can see that all paired tests are significant. The last check is to ensure that assumptions of normality were not violated. Something called a qqplot is typically used. This plots the data against a theoretical fit if the data were normal. If they look similar then the data is normal. 
+
+```{r}
+plot(teethVC, 2)
+```
+
+Here we can see that the data appears to be normal.
+
+## Comparing multiple categories
+
+The last test of interest is the Chi-squared test. This is a test to determine if counts are random normal or biased in a set of categories. We will test this in a table of COVID19 deaths. This table was obtained from StatsCan (Statistics Canada)
+
+Read in the data table
+```{r}
+# read the table as a tab separated values
+covidDeath  <- read.delim("covidDeaths.txt", row.names = 1)
+```
+
+Set up a chisq.test() to test death from pneumonia versus covid pneumonia for 15 to 24 year olds versus 55 to 64 year olds
+
+```{r}
+#select the data
+
+covid2test<- covidDeath[, c(1,4,3)]
+
+#the test
+chi<-chisq.test(covid2test)
+
+#the test result
+chi
+
+#some values used in the calculation
+names(chi)
+```
+residuals tell us how unexpected the observations are and in what direction, negatives are observations that are too low and positive are observations that are too high. 
+
+A graph to find the variables that are influencing the result
+```{r}
+
+corrplot(chi$residuals, is.corr =  F, cl.ratio = 1)
+
+```
+
+We can see that COVID and COVID-Pneumonia are less in younger populations relative to Pneumonia. While in older populations COVID-pneumonia in creases. By 85 COVID takes over a leading cause of death. Overall this shows a high dependence on age and cause of death related to COVID and pneumonia. 
+
+
+
+
+## TAKE HOME ASSIGNMENT
+---
+DUE: Wednesday January 19th 11:59 pm
+
+For this assignment you will apply what you learned about basic
+statistical analysis to a data set on heart disease. The assignment
+should be completed as a new RMD document and knitted. Submit the html
+knitted document and the original RMD document.
+
+*Assignment* To help you out I have set up another data set.
+
+To get you started here is the link to the data
+<https://archive.ics.uci.edu/ml/machine-learning-databases/statlog/heart/heart.dat>
+
+and here is a vector of column names:
+
+age, sex, chestPain, restBP, cholesterol, fastGlucose, restEC,
+maxHeartRate, exAngina, oldPeak, slope, numVessels, thal, disease
+
+Here is what they mean
+
+      age-- 1. age       
+      sex-- 2. sex       
+      cp-- 3. chest pain type  (4 values)       
+      restbp-- 4. resting blood pressure  
+      chol-- 5. serum cholesterol in mg/dl      
+      fbs-- 6. fasting blood sugar > 120 mg/dl       
+      restecg-- 7. resting electrocardiographic results  (values 0,1,2) 
+     maxach -- 8. maximum heart rate achieved  
+     exang -- 9. exercise induced angina    
+     oldpeak -- 10. oldpeak = ST depression induced by exercise relative to rest   
+    slope  -- 11. the slope of the peak exercise ST segment     
+    num  -- 12. number of major vessels (0-3) colored by fluoroscopy        
+    thal -- 13.  thal: 3 = normal; 6 = fixed defect; 7 = reversible defect
+    disease -- 14. 1 = healthy; 2 = sick
+
+*Attributes types*
+
+Real: 1,4,5,8,10,12 Ordered:11, Binary: 2,6,9 Nominal:7,3,13
+
+*QUESTIONS*
+
+Starting with a new notebook,completed the numbered tasks/questions
+below. Put each task as at least one code chunk or more if needed.
+
+## Concept quesitons
+
+Complete this question on your own using short answers 1-2 sentences.
+
+1.  What is the difference between the functions c() and paste()?
+
+2.  What is one similarity and one major difference between a matrix() and a data.frame() object?
+
+3.  Explain what each of these lines of code will do?
+
+myVar <- patient_ID 
+
+myVar2 <- "123663"
+
+myVar3 <- list(A, 23, "X")
+
+
+## Coding activity
+
+*Be sure to briefly describe what each of your code chunks is doing and
+why you are doing the analysis/calculation.*
+
+Only use the # comments in the code chunks to organize and annotate the
+code, DO NOT use this to discuss results.
+
+After the code chunk explain your findings or interpret you results the free text. For example if using a statistical test was the result significant ornon-significant? Next make any conclusions from your
+findings. You can work alone or in a small group of 2-3 people. But you
+must submit your own work.
+
+### 1. Read in the data tables. We will do this together!
+
+This code chunk will read in the data remotely from a url and add the
+labels on to the column and format some of the categorical variables to
+be more readable. Often these are 0 and 1 or 1 and 2. It is convent to
+people readable letters or words. For example sex will be converted from
+0 and 1 to M and F.
+
+```{r}
+url<-"https://archive.ics.uci.edu/ml/machine-learning-databases/statlog/heart/heart.dat"
+
+heart <- read.csv(url, sep=" ", header = F)
+names <- c("age", "sex", "cp", "restbp", 
+  "chol", "fbs", "restecg", "maxach", "exang", "oldpeak", "slope", "num", 
+  "thal","disease")
+heart<-data.frame(heart)
+colnames(heart) <- names
+heart.dat<-heart
+heart.dat$sex <- factor(heart.dat$sex, labels=c("F", "M"))
+
+heart.dat$cp <- factor(heart.dat$cp, 
+  labels=c("Typ", "Atyp", "Non-Ang", "Asymp"))
+
+heart.dat$fbs <- factor(heart.dat$fbs, labels=c("T", "F"))
+
+heart.dat$restecg <- factor(heart.dat$restecg, 
+  labels=c("Normal", "Abnorm", "Hypertrophy"))
+
+heart.dat$exang <- factor(heart.dat$exang, labels=c("N", "Y"))
+
+heart.dat$slope <- factor(heart.dat$slope, 
+  labels=c("Up", "Flat", "Down"))
+
+heart.dat$thal <- factor(heart.dat$thal, 
+  labels=c("Normal", "Fixed", "Reversible"))
+
+heart.dat$disease <- factor(heart.dat$disease, labels=c("H", "S"))
+```
+
+*NOTE:* the call to the internet may cause problems when knitting the
+document to HTML. To solve this you should run the code to create the
+heart.dat table. Then save the table to your drive. Create a new code
+chunk to load the table from your drive. Comment the code to prevent it
+from running during knitting.
+
+```{r}
+# to save the data file, only need to do this once then comment out
+save( heart.dat, file= "heart_data.Rdata") 
+
+# to load the data file, need to do this every time, this will load the object heart.dat
+load("heart_data.Rdata")
+```
+
+### 2. Create an appropriate graph that shows the number of healthy and sick patients by sex.
+
+
+
+
+### 3. Use an appropriate statistical test to determine if there are a similar distreibution of male and female helathy and sick patients.
+
+```{r}
+#HINT, here is a function called table() that can create a table of counts of categories. 
+
+table(heart.dat$disease, heart.dat$sex)
+```
+
+### 4. Make appropriate graphs for each of the age, resting blood pressure and cholesterol between the helathy and sick patients (one graph for each continuous variable) 
+
+
+
+### 5. Make an appropriate statistical test for each of the resting blood pressure and the cholesterl between helathy and sick patients. 
+
+
+
+### 6. Males and female often have different values for clincial and physiological variables. Make a graph that compares cholesterol in males and females who are helathy and sick. Describe your observations from the graph and how this compares to the graph in Question 4. 
+
+
+
+### 7. Perfrom a statisical test compariing cholesterol levels between sick males and sick females.Discuss this result and compare to the result of question 5. 
+
+
+### 8. Consider if the variable thal significantly changes the differences in the maximum heart rate achieved. Use an ANOVA and the Tukey post hoc test to statistically test the differences. Make sure to report and interpret the the p-value of the ANOVA and if it passed or failed the Tukey's test.
+
