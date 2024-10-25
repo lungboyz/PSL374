@@ -1,0 +1,165 @@
+---
+title: "Assin 1"
+author: "Brian Cox"
+date: "2023-01-11"
+output: html_document
+---
+
+## TAKE HOME ASSIGNMENT
+---
+DUE: Wednesday January 19th 11:59 pm
+
+For this assignment you will apply what you learned about basic
+statistical analysis to a data set on heart disease. The assignment
+should be completed as a new RMD document and knitted. Submit the html
+knitted document and the original RMD document.
+
+*Assignment* To help you out I have set up another data set.
+
+To get you started here is the link to the data
+<https://archive.ics.uci.edu/ml/machine-learning-databases/statlog/heart/heart.dat>
+
+and here is a vector of column names:
+
+age, sex, chestPain, restBP, cholesterol, fastGlucose, restEC,
+maxHeartRate, exAngina, oldPeak, slope, numVessels, thal, disease
+
+Here is what they mean
+
+      age-- 1. age       
+      sex-- 2. sex       
+      cp-- 3. chest pain type  (4 values)       
+      restbp-- 4. resting blood pressure  
+      chol-- 5. serum cholesterol in mg/dl      
+      fbs-- 6. fasting blood sugar > 120 mg/dl       
+      restecg-- 7. resting electrocardiographic results  (values 0,1,2) 
+     maxach -- 8. maximum heart rate achieved  
+     exang -- 9. exercise induced angina    
+     oldpeak -- 10. oldpeak = ST depression induced by exercise relative to rest   
+    slope  -- 11. the slope of the peak exercise ST segment     
+    num  -- 12. number of major vessels (0-3) colored by fluoroscopy        
+    thal -- 13.  thal: 3 = normal; 6 = fixed defect; 7 = reversible defect
+    disease -- 14. 1 = healthy; 2 = sick
+
+*Attributes types*
+
+Real: 1,4,5,8,10,12 Ordered:11, Binary: 2,6,9 Nominal:7,3,13
+
+*QUESTIONS*
+
+Starting with a new notebook,completed the numbered tasks/questions
+below. Put each task as at least one code chunk or more if needed.
+
+## Concept quesitons
+
+Complete this question on your own using short answers 1-2 sentences.
+
+1.  What is the difference between the functions c() and paste()?
+
+
+2.  What is one similarity and one major difference between a matrix() and a data.frame() object?
+
+
+3.  Explain what each of these lines of code will do?
+
+myVar <- patient_ID 
+
+myVar2 <- "123663"
+
+myVar3 <- list(A, 23, "X")
+
+
+## Coding activity
+
+*Be sure to briefly describe what each of your code chunks is doing and
+why you are doing the analysis/calculation.*
+
+Only use the # comments in the code chunks to organize and annotate the
+code, DO NOT use this to discuss results.
+
+After the code chunk explain your findings or interpret you results the free text. For example if using a statistical test was the result significant ornon-significant? Next make any conclusions from your
+findings. You can work alone or in a small group of 2-3 people. But you
+must submit your own work.
+
+### 1. Read in the data tables. We will do this together!
+
+This code chunk will read in the data remotely from a url and add the
+labels on to the column and format some of the categorical variables to
+be more readable. Often these are 0 and 1 or 1 and 2. It is convent to
+people readable letters or words. For example sex will be converted from
+0 and 1 to M and F.
+
+```{r}
+# url<-"https://archive.ics.uci.edu/ml/machine-learning-databases/statlog/heart/heart.dat"
+# 
+# heart <- read.csv(url, sep=" ", header = F)
+# names <- c("age", "sex", "cp", "restbp", 
+#   "chol", "fbs", "restecg", "maxach", "exang", "oldpeak", "slope", "num", 
+#   "thal","disease")
+# heart<-data.frame(heart)
+# colnames(heart) <- names
+# heart.dat<-heart
+# heart.dat$sex <- factor(heart.dat$sex, labels=c("F", "M"))
+# 
+# heart.dat$cp <- factor(heart.dat$cp, 
+#   labels=c("Typ", "Atyp", "Non-Ang", "Asymp"))
+# 
+# heart.dat$fbs <- factor(heart.dat$fbs, labels=c("T", "F"))
+# 
+# heart.dat$restecg <- factor(heart.dat$restecg, 
+#   labels=c("Normal", "Abnorm", "Hypertrophy"))
+# 
+# heart.dat$exang <- factor(heart.dat$exang, labels=c("N", "Y"))
+# 
+# heart.dat$slope <- factor(heart.dat$slope, 
+#   labels=c("Up", "Flat", "Down"))
+# 
+# heart.dat$thal <- factor(heart.dat$thal, 
+#   labels=c("Normal", "Fixed", "Reversible"))
+# 
+# heart.dat$disease <- factor(heart.dat$disease, labels=c("H", "S"))
+```
+
+*NOTE:* the call to the internet may cause problems when knitting the
+document to HTML. To solve this you should run the code to create the
+heart.dat table. Then save the table to your drive. Create a new code
+chunk to load the table from your drive. Comment the code to prevent it
+from running during knitting.
+
+```{r}
+# to save the data file, only need to do this once then comment out
+#save( heart.dat, file= "heart_data.Rdata") 
+
+# to load the data file, need to do this every time, this will load the object heart.dat
+load("heart_data.Rdata")
+```
+
+### 2. Create an appropriate graph that shows the number of healthy and sick patients by sex.
+
+
+
+
+### 3. Use an appropriate statistical test to determine if there are a similar distreibution of male and female helathy and sick patients.
+
+```{r}
+#HINT, here is a function called table() that can create a table of counts of categories. 
+
+table(heart.dat$disease, heart.dat$sex)
+```
+
+### 4. Make appropriate graphs for each of the age, resting blood pressure and cholesterol between the helathy and sick patients (one graph for each continuous variable) 
+
+
+
+### 5. Make an appropriate statistical test for each of the resting blood pressure and the cholesterl between helathy and sick patients. 
+
+
+
+### 6. Males and female often have different values for clincial and physiological variables. Make a graph that compares cholesterol in males and females who are helathy and sick. Describe your observations from the graph and how this compares to the graph in Question 4. 
+
+
+
+### 7. Perfrom a statisical test compariing cholesterol levels between sick males and sick females.Discuss this result and compare to the result of question 5. 
+
+
+### 8. Consider if the variable thal significantly changes the differences in the maximum heart rate achieved. Use an ANOVA and the Tukey post hoc test to statistically test the differences. Make sure to report and interpret the the p-value of the ANOVA and if it passed or failed the Tukey's test.

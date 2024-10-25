@@ -1,0 +1,106 @@
+---
+title: "Assignment 5"
+author: "Michael Zarathus-Cook"
+date: "2022-11-01"
+output: html_document
+---
+```{r}
+library(DT)
+library(shiny)
+
+# These two new packages will be needed for stitching the app altogether 
+library(packrat)
+library(rsconnect)
+
+# You should already have these packages
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# Weekly Assignment #5 
+
+Due: Thurs Oct 27, 2022 @ 11:59PM
+---
+
+This is a larger assignment so there will not be any concept questions.
+
+
+# Coding question 
+
+Make a Shiny app based on any one of the datasets we've worked on in this course (but not the bCancer set we used for the examples in class)! Some suggestions would be the heart dataset or the diabetes data set we've brought through a few of the assignments. The point of this assignment is to work with code that we've already written and convert it to an interactive platform. Imagine the original researchers who generated this dataset have collected this data and are collaborating with you to analyze the data, how would you present the findings to them? 
+
+Set up at least 2 analysis (similar to this workflow). Such as a two graphs or a graph and a table that are reactive. 
+
+The submission for this assignment will be a bit different. 
+1. baselineCode.Rmd - this file will be similar to this one, show me that you have working code ready to translate to a Shiny app. Take the code of interest and make a generic version for the variable you want the user to modify.
+
+2. baselineCode.html - parallel knitted file
+Show that this code works to generate the desired output, you may need to specify the variable
+
+3. app.R - Don't change the name of this file, it needs to be "app.R" to execute as a shiny app. We will execute it on our end to launch the shiny app. 
+
+4. Link to your application from your shinyapps.io account
+
+Most of the datasets we work with are grabbed from the internet directly using the URL so that won't be necessary to submit. It is suggested that you DO NOT use URL data access in a function or app.R. First download and save the data you want to work with then access the file.  
+
+This assignment will be evaluated by: 
+
+Was the workflow properly prepared?
+Does it launch? 
+Does it execute the computations correctly? 
+Is it intuitive to interact with? 
+
+I'm not asking for a perfectly polished app, but it needs to be logical, with heading and labels or simple instructions. Consider the layout of the page to make the app more intuitive. Make sure the different regions are named correctly. 
+
+```{r}
+library(shiny)
+ui <- fluidPage(
+   titlePanel("Density Plots of 5 Variables of High Cholesterol Patients"),
+  plotOutput("plot1", click = "plot_click"),
+  verbatimTextOutput("info")
+)
+server <- function(input, output) {
+  output$plot1 <- renderPlot({
+   heart.dat %>% 
+select(age, restbp, chol, maxach, oldpeak, disease) %>% 
+pivot_longer(age:oldpeak, names_to = "variables", values_to = "values") %>% 
+ggplot(aes(x = values, colour = disease)) +
+	geom_density() +
+	facet_wrap(~variables, scales = "free")
+  })
+
+ output$info <- renderText({
+    paste0("x=", input$plot_click$x, "\ny=", input$plot_click$y)
+  })
+}
+
+shinyApp(ui, server)
+```
+
+
